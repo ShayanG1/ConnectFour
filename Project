@@ -1,1 +1,76 @@
-public static void whatever
+package connectFour;
+
+public class Board{
+    String[][] theBoard = new String[6][7];
+    //Create new board object
+    public Board() {
+    }
+    //makes each place on board "empty"
+    public void resetBoard()
+    {
+        for(int i = 0; i < theBoard.length; i++){
+            for(int j = 0; j < theBoard[0].length; j++){
+                theBoard[i][j] = " empty |";
+            }
+        }
+    }
+    //This prints out each position on board.
+    public String displayBoard(){
+        System.out.println("Current Board:");
+        System.out.println("    1       2       3       4       5       6       7    ");
+        for(int row = 0; row < theBoard.length; row++){
+            System.out.print("|");
+            for(int col = 0; col < theBoard[row].length; col++){
+                System.out.print(theBoard[row][col]);
+            }
+            System.out.println();
+        }
+        return "p";
+    }
+    public int getWinner(){
+        int winner = 0;
+        int redCounter = 0;
+        int blackCounter = 0;
+        for(int i = 0; i < theBoard.length; i++){
+            for(int j = 0; j < theBoard[0].length; j++){
+                if(theBoard[i][j] == "  Red  |"){
+                    redCounter++;
+                }
+                else if(theBoard[i][j] == " Black |"){
+                    blackCounter++;
+                }
+                else{
+                    redCounter = 0;
+                    blackCounter = 0;
+                }
+                if(redCounter == 4 && winner == 0){
+                    winner = 1;
+                }
+                if(blackCounter == 4 && winner == 0){
+                    winner = 2;
+                }
+            }
+        }
+        for(int i = 0; i < theBoard[0].length; i++){
+            for(int j = 0; j < theBoard.length; j++){
+                if(theBoard[i][j] == "  Red  |"){
+                    redCounter++;
+                }
+                else if(theBoard[i][j] == " Black |"){
+                    blackCounter++;
+                }
+                else{
+                    redCounter = 0;
+                    blackCounter = 0;
+                }
+                if(redCounter == 4 && winner == 0){
+                    winner = 1;
+                }
+                if(blackCounter == 4 && winner == 0){
+                    winner = 2;
+                }
+            }
+        }
+        return winner;
+    }
+}
